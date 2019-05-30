@@ -29,11 +29,8 @@ export function processResults (filePattern, testAttempt) {
         suite.testcase = cases[1]
         specNames.push(...(cases[0].map(caze => caze.$.name)))
       })
-<<<<<<< HEAD
+
       console.log(result)
-=======
-      console.log(result);
->>>>>>> c811363bb669d305fae18d92d0fdf4422640da3a
       let builder = new Builder()
       let xml = builder.buildObject(result)
       //fs.writeFileSync(resolvedPath, 'testAttempt' + testAttempt)
