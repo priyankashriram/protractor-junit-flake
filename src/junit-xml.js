@@ -4,7 +4,7 @@ import path from 'path'
 import _ from 'lodash'
 import { parseString as parseXml, Builder } from 'xml2js'
 
-export function processResults (filePattern) {
+export function processResults (filePattern, testAttempt) {
   var cwd = process.cwd()
   var files = glob.sync(filePattern, { cwd: cwd })
   return files.reduce((specNames, file) => {
@@ -29,8 +29,10 @@ export function processResults (filePattern) {
         suite.testcase = cases[1]
         specNames.push(...(cases[0].map(caze => caze.$.name)))
       })
+      console.log(result)
       let builder = new Builder()
       let xml = builder.buildObject(result)
+      //fs.writeFileSync(resolvedPath, 'testAttempt' + testAttempt)
       fs.writeFileSync(resolvedPath, xml)
     })
     return specNames
